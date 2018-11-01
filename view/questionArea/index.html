@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+		<link rel="stylesheet" href="../../static/css/base.css" />
+		<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+		<title></title>
+		<style>
+			.cq-content{
+				width: 700px;
+				float: left;
+			}
+			.cp-content{
+				width: 230px;
+				float: right;
+			}
+			.questionType{
+				margin: 10px 0 0 0;
+				background: #EDEDED;
+				
+			}
+			.questionType ul li{
+				float:left;
+				padding: 10px;
+				
+				
+				margin: 10px;
+				cursor: pointer;
+			}
+			.questionType ul .li-active{
+				color: #FFF;
+				background: #00BC9B;
+				
+			}
+			.questionType ul li:hover{
+				color: #00BC9B;
+				
+			}
+			.speak{
+				padding: 10px;
+				margin: 10px;
+				border-bottom: 1px dotted #e0e0e0;
+			}
+			.speak-img{
+				
+				float: left;
+			}
+			
+			.speak-img img{
+				width: 60px;
+				height: 60px;
+				border-radius: 60px;
+				
+			}
+			.speak-desc{
+				float: left;
+				
+			}
+			.speak-desc .speak-title{
+				margin: 10px;
+				cursor: pointer;
+			}
+			.speak-desc .speak-title:hover{
+				color: #00BC9B;
+				
+			}
+			.speak-desc .speak-content{
+				margin: 10px;
+				
+			}
+			.speak-name{
+				color: red;
+				font-size: 14px;
+			}
+			.speak-time{
+				color: #e0e0e0;
+				font-size: 12px;
+				
+			}
+			.speak-turnTime{
+				color: #e0e0e0;
+				font-size: 12px;
+				
+			}
+			.op{
+				
+			}
+			.op ul{
+				margin: 10px 0 10px 0;
+				padding:  0 0 0 0;
+			}
+			.op ul li{
+				padding: 20px;
+				cursor: pointer;
+				
+			}
+			.op ul li:hover{
+				background: #eee;
+				
+			}
+			.op ul li .op-img{
+				float:left;
+			}
+			.op ul li .op-desc{
+				padding: 10px;
+				float:left;
+				
+			}
+			.op ul li .op-desc .op-content{
+				font-size: 12px;
+				color: #e0e0e0;
+			}
+			.op ul li .op-img img{
+				width: 40px;
+				height: 40px;
+				
+			}
+			
+			
+		</style>
+		
+	</head>
+	<body>
+		<div class="header" id="header">
+			<div class="icon">
+				<img src="../../static/img/icon.png" class="img" />
+			</div>
+			
+			<ul>
+				<li>
+					<a href="../index/index2login.html" >学生课堂</a>
+					
+					
+				</li>
+				<li>
+					<a href="" style="color: white;">问答专区</a>
+				</li>
+				<li>
+					<a href="../questionArea/questionBrushing.html">题库</a>
+				</li>
+				
+				
+			</ul>
+			<div class="right">
+				<a href="" >
+					购物车
+				</a>
+				<a href="">
+					登录
+				</a>
+				<a href="">
+					注册
+				</a>
+					
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="bodyer">
+			<div class="bodyCenter">
+				<img src="../../static/img/background.jpg" width="100%" height="80px"/>
+				<div class="cq-content">
+					<div class="module-box">
+						<h1 class="h1">
+							问答专区
+							<div style="float:right">
+								<a href="publishProblem.html">
+									<button class="btn">我要发布</button>
+								</a>
+							</div>
+							
+						</h1>
+						<div class="clear"></div>
+						<div class="questionType">
+						<ul>
+							<li>
+								<div class="types li-active">全部</div>
+							</li>
+							<li>
+								<div class="types">java</div>
+							</li>
+							<li>
+								<div class="types">mysql</div>
+							</li>
+							<li>
+								<div class="types">c++</div>
+							</li>
+							<li>
+								<div class="types">机器学习</div>
+							</li>
+							<li>
+								<div class="types">大数据</div>
+							</li>
+						</ul>
+						<div class="clear"></div>
+						</div>
+					</div>
+					<div class="module-box" style="min-height: 400px;">
+						<div class="content">
+							<div class="head">
+								<ul>
+									<li class="li-active">最新发布</li>
+									<li>最热</li>
+									<li>精华</li>
+									
+								</ul>
+							</div>
+							<div class="clear"></div>
+							<div class="speaks" id="speaks">
+								<div class="speak" v-for="speak in speaks">
+									<div class="speak-img">
+										<img  v-bind:src="['http://127.0.0.1:8080/resource/'+speak.headUrl]" />
+									</div>
+									<div class="speak-desc">
+										<div class="speak-title">
+											{{speak.questionTitle}}
+										</div>
+										<div class="speak-content">
+											<span class="speak-name">{{speak.username}}</span>
+											<span class="speak-time">{{speak.publishTime}}</span>
+											<span class="speak-turnTime">最后回复:{{speak.lastResponseTime}}</span>									
+										</div>
+									</div>	
+									<div class="clear"></div>
+								</div>
+							</div>	
+							<div class="clear"></div>
+							
+							<div class="page-util">
+								<ul>
+									<li>首页</li>
+									<li>上一页</li>
+									<li class="page-util-active" style="color: #FFF;">1</li>
+									<li>2</li>
+									<li>3</li>
+									<li>4</li>
+									<li>5</li>
+									<li>6</li>
+									<li>7</li>									
+									<li>8</li>
+									<li>下一页</li>
+									<li>末页</li>
+								</ul>
+							</div>
+							
+							<div class="clear"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="cp-content">
+					<div class="module-box" style="padding: 0 0 0 0;">
+						<h1 class="h1">我的动态</h1>
+						<div class="op">
+							<ul>
+								<li>
+									<a href="myPublishQuestion.html">
+									<div>
+										<div class="op-img"><img src="../../static/img/questionArea/发布.png" alt="" /></div>
+										<div class="op-desc">
+											<div class="op-title">我的发布</div>
+											
+											<div class="op-content">学海无涯，一步一脚印</div>
+										</div>
+										<div class="clear"></div>
+									</div>
+									</a>
+									
+								</li>
+								<li>
+									<a href="myAnswerQuestion.html">
+									<div>
+										<div class="op-img"><img src="../../static/img/questionArea/回答.png" alt="" /></div>
+										<div class="op-desc">
+											<div class="op-title">我的回答</div>
+											<div class="op-content">帮助别人，快乐自己</div>
+										</div>
+										<div class="clear"></div>
+									</div>
+									</a>
+									
+								</li>
+							</ul>
+							<div class="clear"></div>
+						</div>
+						
+						
+						
+						
+					</div>
+					<div class="module-box" style="background: url(../../static/img/questionArea/3.png); height: 60px; cursor: pointer;">
+						
+						
+					</div>
+					<div class="module-box">
+						<h1 class="h1">快递查询</h1>
+						<input type="text" class="input" style="" id="find_input"/>
+						<button class="btn" style="width: 180px;margin: 20px 0 0 0;" onclick="find()">查询</button>
+					</div>
+					<div class="">
+						
+						
+					</div>
+				</div>
+				
+				
+			</div>
+		
+			
+			
+			
+		</div>
+		
+		
+		<div class="footer">
+			
+		</div>
+		
+		
+	</body>
+	
+</html>
+<script src="../../static/js/base.js"></script>
+<script type="text/javascript" src="../../static/js/jquery/jquery-3.3.1.min.js" ></script>
+<script src="../../static/js/font.js"></script>
+<script>
+	var vue;
+	$.ajax({
+		type:"get",
+		url:controllerUrl+"question_area/new_question_list",
+		async:true,
+		dataType:"json",
+		data:{
+			keyword:"",		
+			first:1,
+			each:20,
+			
+		},success:function(data){
+			vue = new Vue({
+				el:"#speaks",
+				data:{
+					speaks:data.data
+				}
+				
+			})
+			console.log(data);
+			
+		},error:function(data){
+			
+		}
+	});
+	/**
+	 * 点击标签，切换类型
+	 */
+	function questionTypeReplace(){
+		$(".types").click(function(){
+			$(".types").css("color","#000");
+			$(".types").css("background","#EDEDED");
+			$(this).css("color","#FFF");
+			$(this).css("background","#00BC9B");
+			
+			var keyword = $(this).html();
+			if(keyword=="全部"){
+				keyword = "";
+			}
+			$.ajax({
+				type:"get",
+				url:controllerUrl+"question_area/new_question_list",
+				async:true,
+				dataType:"json",
+				data:{
+					keyword:keyword,		
+					first:1,
+					each:20,
+					
+				},success:function(data){
+					
+					vue._data.speaks = data.data;
+					
+					
+					
+				},error:function(data){
+					
+				}
+			});
+		})
+		
+	}
+	questionTypeReplace()
+	
+	function find(){
+		var num = $("#find_input").val();
+		if(num==""){
+			$("#find_input").focus();return;
+		}
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"spider/look_express_delivery",
+			async:true,
+			dataType:"json",
+			data:{
+				number:num,
+			},success:function(data){
+				console.log(data);
+				
+				if(data.info=="error"){
+					alert("快递单号错误");
+				}else{
+					
+					console.log(data);
+					
+					/*var a = "asada";
+					a = a.replace("a","b");
+					a= a.split('a').join('b');
+					console.log(a);*/
+					
+				}
+				
+			},error:function(data){
+				
+				
+			}
+		});
+		
+	}
+</script>

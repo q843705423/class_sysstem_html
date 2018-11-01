@@ -1,0 +1,34 @@
+.bodyer ul {
+			list-style: none;
+			width: 2rem;
+		}
+		.bodyer ul li{
+			
+			padding: 0.3rem;
+			margin: 0.2rem 0;
+			border-radius: 0.1rem;
+			border-top-right-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
+			color: #222;
+			cursor: pointer;
+		}
+		.bodyer ul li:hover{
+			background: #FF9900;
+			color: white;
+		}
+		.bodyer .menu{
+			
+			float:left;
+		}
+		.bodyer .split{
+			float:left;
+			width: 0px;
+			border: 1px solid #ccc;
+			background: #ccc;
+			height: 600px;
+			margin: 0 0 0 0.3rem;
+			
+		}
+		.bodyer .content{
+			float:left;
+		}

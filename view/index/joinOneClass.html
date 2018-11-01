@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>加入课程</title>
+	<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+	<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+	<link rel="stylesheet" href="../../static/css/base.css" />
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style>
+		.cq-content{
+			width: 658px;
+			float: left;
+		}
+		.cp-content{
+			width: 280px;
+			float: right;
+		}
+		
+		.intro .intro_img{
+			float:left;
+			
+		}
+		.intro_img img{
+			width: 170px;
+			height: 168px;
+			margin: 20px 0 0 0;
+		}
+		.intro .intro_font{
+			float: left;
+			padding: 0px 0 0 0;
+			
+		}
+		.intro .intro_font ul li{
+			padding: 10px ;
+			color: #666;
+		}
+		.intro .more_intro{
+			background: #f0f0f0;
+    		color: #666;
+    		padding: 30px;
+			
+		}
+		.comment li{
+			border-bottom: 1px #eee dotted;
+			
+		}
+		.comment .user-img{
+			float: left;
+			padding: 10px;
+			
+		}
+		.comment .user-img img{
+			width: 50px;
+			height: 50px;
+			
+		}
+		.comment .user-font{
+			float: left;
+			padding: 10px;
+			
+		}
+		.comment .user-say{
+			color: #999;
+    		font-size: 12px;
+			
+		}
+		.what_like ul{
+			margin:  0 ;
+			
+		}
+		.what_like ul li{
+			padding: 10px;
+			cursor: pointer;
+		}
+		.what_like ul li img{
+			
+			width: 140px;
+			height: 140px;
+		}
+		.dialog{
+			text-align: center;
+		}
+		.dialog .content{
+			padding: 20px 0 0 0;
+			
+		}
+		.dialog .footer{
+			margin: 40px 0 0 0 ;
+		}
+	</style>
+</head>
+<body>
+<div class="header" id="header">
+	<div class="icon">
+		<img src="../../static/img/icon.png" class="img" />
+	</div>
+	
+	<ul>
+		<li>
+			<a href="index2login.html" style="color: white;">学生课堂</a>
+			
+			
+		</li>
+		<li>
+			<a href="../questionArea/index.html">问答专区</a>
+		</li>
+		<li>
+			<a href="../questionArea/questionBrushing.html">题库</a>
+		</li>
+		
+	</ul>
+	<div class="right">
+		<a href="" >
+			购物车
+		</a>
+		<a href="">
+			登录
+		</a>
+		<a href="">
+			注册
+		</a>
+			
+	</div>
+	<div style="clear: both;"></div>
+</div>
+<div class="bodyer">
+	<div class="bodyCenter">
+		<div class="cq-content">
+			<div class="intro">
+				<div id="myClass">
+				<div class="module-box">
+					<h1 class="h1">{{myClass.className}}</h1>
+					<div>
+						<div class="intro_img">
+							<img v-bind:src="['http://127.0.0.1:8080/resource/'+myClass.classHeadUrl]" alt="" />
+						</div>
+						<div class="intro_font">
+							<ul>
+								<li>任课老师: {{myClass.teacher}}</li>
+								<li>难度系数:
+									<img src="../../static/img/index/star.png" alt="" />
+									<img src="../../static/img/index/star.png" alt="" />
+									<img src="../../static/img/index/star.png" alt="" />
+								</li>
+								<li>完成课时: {{myClass.classTime}}课程</li>
+								<li>学分:   {{myClass.classGoal}}分</li>
+								<li>学校: 杭州电子科技大学信息工程学院</li>
+							</ul>
+							
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div class="more_intro">
+						 {{myClass.classIntro}}
+					</div>
+					
+					<div class="clear"></div>
+					<div style="text-align: center;margin: 10px 0 0 0;">
+						<button class="btn" style="width: 200px;" onclick="show()">加入班级开始学习</button>
+						
+					</div>
+					
+				</div>
+			</div>
+			</div>
+		</div>
+		
+		<div class="cp-content">
+			<div class="module-box">
+				<div class="comment">
+					<h1 class="h1"> <i class="icon-comment"></i>课堂评论</h1>
+					<ul>
+						<li>
+							<div class="user-img"><img src="../../static/img/user.jpg" alt="" /></div>
+							<div class="user-font">
+								<div class="user-name">其乐无穷</div>
+								<div class="user-say">简单易懂</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						
+						<li>
+							<div class="user-img"><img src="../../static/img/user.jpg" alt="" /></div>
+							<div class="user-font">
+								<div class="user-name">齐天大圣</div>
+								<div class="user-say">有点难度</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						
+						<li>
+							<div class="user-img"><img src="../../static/img/user.jpg" alt="" /></div>
+							<div class="user-font">
+								<div class="user-name">孙先生</div>
+								<div class="user-say">感觉跟不上</div>
+							</div>
+							<div class="clear"></div>
+						</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+			<div class="module-box">
+				<div class="what_like">
+					<h1 class="h1">猜你喜欢</h1>
+					<ul>
+						<li>
+							<img src="../../static/img/studentClass/db.jpg" alt="" />
+							
+						</li>
+						<li>
+							<img src="../../static/img/studentClass/db.jpg" alt="" />
+							
+						</li>
+						<li>
+							<img src="../../static/img/studentClass/db.jpg" alt="" />
+							
+						</li>
+					</ul>
+					
+				</div>
+				
+				
+				
+			</div>
+		</div>
+		
+	</div>
+	
+	
+</div>
+	
+<div class="mask" id="mask"></div>	
+<div class="dialog" id="dialog">
+	<div class="title"></div>
+	<div class="content">
+		<input type="text" class="input" width="400px" placeholder="请输入邀请码" id="code" onclick="tip('')" />
+		<button class="btn" onclick="join()">加入班级</button>
+		<br />
+		<span id="tip" style="color: red;"></span>
+		
+		
+	</div>
+	<div class="footer">
+		<button class="btn" onclick="hideDialog()">关闭</button>
+	</div>
+</div>
+
+</body>
+</html>
+<script src="../../static/js/jquery/jquery-3.3.1.min.js"></script>
+<script src="../../static/js/font.js"></script>
+<script src="../../static/js/base.js"></script>
+<script>
+	function join(){
+		
+		studetnJoinClassRoom();
+	}
+	function studetnJoinClassRoom(){
+		if(code.value==""){
+			$("#code").focus();
+			return;
+		}
+		
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"student_class/studetnJoinClassRoom",
+			async:true,
+			dataType:"json",
+			data:{
+				token:localStorage["token"],
+				classNumber:url("classNumber"),
+				code:code.value,
+			},success:function(data){
+				if(data.info=="repateJoin"){
+					tip("请不要重复加入")
+				}else if(data.info=="success"){
+					tip("加入成功");
+				}else if(data.info=="codeError"){
+					tip("验证码错误");
+					
+				}
+				
+				console.log(data);
+			},error:function(data){
+				
+			}
+		});		
+	}
+
+	
+	function show(){
+		$(".input").val("");
+		$("#tick").html("");
+		showDialog({
+			id:"dialog",
+			width:400,
+			height:200,
+			
+		})
+		
+		
+	}
+	
+	$.ajax({
+		type:"get",
+		url:controllerUrl+"class_room/get_class_room_by_number",
+		async:true,
+		dataType:"json",
+		data:{
+			classNumber:url("classNumber")
+		},success:function(data){
+			console.log(data);
+			new Vue({
+			  el: '#myClass',
+			  data: {
+			    myClass: data.data
+			  }
+			})
+		},error:function(data){
+			
+		}
+	});
+	
+	function tip(message){
+		$("#tip").html(message);
+		
+	}
+</script>

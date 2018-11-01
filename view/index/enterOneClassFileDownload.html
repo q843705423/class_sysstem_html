@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据结构班级</title>
+		<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+		<link rel="stylesheet" href="../../static/css/base.css" />
+		<script type="text/javascript" src="../../static/js/jquery/jquery-3.3.1.min.js" ></script>
+		<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+		<link rel="stylesheet" href="../../static/css/student.css" />
+		<style>
+			.cq-content{
+				width: 200px;
+				float: left;
+			}
+			.cp-content{
+				margin: 10px 0 0 0;
+				width: 640px;
+				float: right;
+			}
+			.user{
+				width: 1000px;
+				background:white;
+				height: 120px;
+				
+			}
+			.user-img{
+				float: left;
+				
+			}
+			.user-img img{
+				width: 80px;
+				height: 80px;
+				border-radius: 80px;
+				padding: 20px;
+				
+			}
+			.user-info{
+				float:left;
+				padding: 20px;
+			}
+			.user-name{
+				cursor: pointer;
+				color: #67b9ff;
+				
+			}
+			.user-info ul{
+				margin: 20px 0 0 -45px;
+				
+			}
+			.user-info ul li{
+				
+				float: left;
+				padding: 5px;
+			}
+			.user-op{
+				float: right;
+				padding: 40px;
+			}
+			.box ul{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				margin: 0;
+				padding: 0;
+			}
+			.menu ul{
+				margin: 0;
+				
+			}
+			.menu ul li{
+				line-height: 10px;
+				padding: 10px ;
+				cursor: pointer;
+				
+			}
+			.menu ul li:hover{
+				background: #f6f6f6;;
+				
+			
+			}
+			.menu ul li  a{
+				margin: -10px 0 0 0;
+				
+			}
+			.menu ul li:hover a{
+				color: #00BC9B;
+				
+			}
+			
+			.content .head{
+				
+				border-bottom: 2px solid  #00bc9b;
+				
+			}
+			
+			.content .head ul li{
+				float:left;
+				font-size: 15px;				
+				cursor: pointer;
+				height: 40px;
+				width: 100px;
+				text-align: center;
+				line-height: 40px;
+			}
+			.content .head ul li:hover{
+				
+				color: white;
+				background: #00bc9b;
+			}
+			.content .head ul li:hover a{
+				color: white;
+			}
+			.li-active{
+				color: white;
+				background: #00bc9b;
+			}
+			.li-active a{
+				color: white;
+			}
+			
+			.files{
+				
+				
+			}
+			.file{
+				float:left;
+				text-align: center;
+				padding: 10px;
+				cursor: pointer;
+				
+			}
+			.file .file-img{
+				
+			}
+			.file .file-font{
+				
+				
+			}
+			.classInfo{
+				text-align: center;
+			}
+			.classInfo .classImg{
+				padding: 10px;
+				width: 80px;
+				height: 80px;
+				border-radius: 80px;
+			}
+			.classInfo .className{
+				weight:400;
+			}
+			.classInfo .teacherName{
+				font-size: 12px;
+			}
+			
+		</style>
+	</head>
+<body>
+	<div class="header" id="header">
+		<div class="icon">
+			<img src="../../static/img/icon.png" class="img" />
+		</div>
+		
+		<ul>
+			<li>
+				<a href="index2login.html" style="color: white;">学生课堂</a>
+				
+				
+			</li>
+			<li>
+				<a href="../questionArea/index.html">问答专区</a>
+			</li>
+			<li>
+				<a href="../questionArea/questionBrushing.html">题库</a>
+			</li>
+			
+			
+		</ul>
+		<div class="right">
+			<a href="" >
+				购物车
+			</a>
+			<a href="">
+				登录
+			</a>
+			<a href="">
+				注册
+			</a>
+				
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="bodyer">
+		
+		
+		<div class="bodyCenter">
+			<div class="user">
+				<div class="user-img">
+					<img src="../../static/img/index/2.jpg" alt="" />
+					
+				</div>
+				<div class="user-info">
+					<div class="user-name">其乐无穷</div>
+					<div class="user-area">
+						<ul>
+							<li>未填所在学校</li>
+							<li>未填所在专业</li>
+							<li>未填所在班级</li>
+						</ul>
+						
+					</div>
+				</div>
+				<div class="user-op">
+					<button class="btn">编辑</button>
+					<button class="btn">打卡</button>
+				</div>
+			</div>
+			
+			<div class="cq-content"  style="margin: 20px 0 0 -120px;width: 250px;">
+				<div class="module-box">
+					<h1 class="h1">课程信息</h1>
+					<div class="classInfo">
+						<img class="classImg" src="../../static/img/studentClass/chinese.jpg" alt="" />
+						<div class="className"></div>
+						<div class="teacherName"></div>
+					</div>
+					
+				</div>
+				<div class="module-box box" >
+					<div class="menu">
+						<ul>
+							<li>
+								<img src="../../static/img/index/enter_index.png" alt="" />
+								<a href="">首页</a>
+								>
+								
+							</li>
+							<li>
+								<img src="../../static/img/index/enter_problem.png" alt="" />
+								<a href="../questionArea/questionBrushing.html">刷题</a>
+								>
+							</li>
+							<li>
+								<img src="../../static/img/index/enter_class.png" alt="" />
+								<a href="">课程</a>
+								>
+							</li>
+							<li>
+								<img src="../../static/img/index/enter_chat.png" alt="" />
+								<a href="../questionArea/index.html">问答</a>
+								>
+							</li>
+							<li>
+								<img src="../../static/img/index/enter_class.png" alt="" />
+								<a href="">博客</a>
+								>
+							</li>
+							<li>
+								<img src="../../static/img/index/enter_setting.png" />
+								<a href="">设置</a>
+								>
+							</li>
+	
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+			<div class="cp-content">
+				<div class="module-box" style="margin: 10px 0 0 -50px;">
+					<div class="content">
+						<div class="head">
+						
+							<ul class="menu">
+								<li ><a href="enterOneClass.html">班级公告</a></li>
+								<li class="li-active"><a href="enterOneClassFileDownload.html">课件下载</a></li>
+								<li><a href="enterOneClassHomework.html">作业上交</a></li>
+								<li><a href="enterOneClassTest.html">在线考试</a></li>
+								
+							</ul>
+							
+							<div class="clear"></div>
+							
+						</div>
+						<div class="files" id="files">
+							<div class="file">
+								<div class="file-img">
+									<a onclick="back()" id="fatherDir">
+										<img src="../../static/img/studentClass/dir.png" alt="" />	
+									</a>
+									<div class="file-font">
+										<font>返回上一层目录</font>
+									</div>
+									
+								</div>
+								
+							</div>
+							
+							<div class="file" v-for="file in files" v-bind:data-id = "file.id">
+								
+								<div class="file-img" v-if="file.types=='dir'" >
+									<div>
+										<img src="../../static/img/studentClass/dir.png" alt="" v-bind:onclick="['openDir('+file.id+')']" v-bind:data-id="file.fatherId" />
+									</div>
+									
+								</div>
+								
+								<div class="file-img" v-else-if="file.types=='txt'" >
+									<a v-bind:href="['http://127.0.0.1:8080/class_resource/download?url='+file.url]">
+									<img src="../../static/img/studentClass/txt.png" alt="" v-bind:data-id="file.fatherId" />
+									</a>
+								</div>
+								<div class="file-img" v-else-if="file.types=='zip'" >
+									<a v-bind:href="['http://127.0.0.1:8080/class_resource/download?url='+file.url]">
+									<img src="../../static/img/studentClass/zip.png" alt="" v-bind:data-id="file.fatherId" />
+									</a>
+								</div>
+								<div class="file-img" v-else-if="file.types=='png'" >
+									<a v-bind:href="['http://127.0.0.1:8080/class_resource/download?url='+file.url]">
+										<img src="../../static/img/studentClass/png.png" alt="" v-bind:data-id="file.fatherId" />
+										
+									</a>
+									
+								</div>
+								<div class="file-img" v-else >
+									<a v-bind:href="['http://127.0.0.1:8080/class_resource/download?url='+file.url]">
+										<img src="../../static/img/studentClass/other.png" alt="" v-bind:data-id="file.fatherId" />
+										
+									</a>
+									
+								</div>
+								
+								<div class="file-font">
+									<font>{{file.shortName}}</font>
+								</div>
+								
+								
+							</div>
+							
+						</div>
+						<div class="clear"></div>
+						<div class="page-util">
+							<ul>
+								<li>首页</li>
+								<li>上一页</li>
+								<li class="page-util-active" style="color: #FFF;">1</li>
+								<li>2</li>
+								<li>3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>
+								<li>8</li>
+								<li>下一页</li>
+								<li>末页</li>
+							</ul>
+							
+						</div>
+						<div class="clear"></div>
+						
+					</div>
+					
+					
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+	
+</body>
+</html>
+<script src="../../static/js/font.js"></script>
+<script type="text/javascript" src="../../static/js/base.js" ></script>
+<script src="../../static/js/student.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	$("[href='enterOneClass.html']").attr("href","enterOneClass.html?classNumber="+url("classNumber"));
+	$("[href='enterOneClassFileDownload.html']").attr("href","enterOneClassFileDownload.html?classNumber="+url("classNumber"));
+	$("[href='enterOneClassHomework.html']").attr("href","enterOneClassHomework.html?classNumber="+url("classNumber"));
+	$("[href='enterOneClassTest.html']").attr("href","enterOneClassTest.html?classNumber="+url("classNumber"));
+	var v;
+	$.ajax({
+		type:"get",
+		url:controllerUrl+"class_resource/show_resource_for_student_by_fatherId",
+		async:true,
+		dataType:"json",
+		data:{
+			classNumber:url("classNumber"),
+			fatherId:-1,
+			first:1,
+			each:11,
+		},success:function(data){
+			console.log(data);
+			v = new Vue({
+				el:"#files",
+				data:{
+					files:data.data
+				}
+				
+			})
+			
+			
+		},error:function(datra){
+			
+		}
+	});
+	function getFatherIdByResourceId(resourceId){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"class_resource/getFatherIdByResourceId",
+			async:true,
+			dataType:"json",
+			data:{
+				resourceId:resourceId,
+				classNumber:url("classNumber"),
+				
+			},success:function(data){
+				if(data.data.length==0){
+						fatherDir = -2;
+					//$("#fatherDir").attr("onclick","back("+data.data[0].fatherId+")");
+					return;
+				}
+				console.log(data);
+				fatherDir = data.data[0].fatherId-0;
+				$("#fatherDir").attr("onclick","back("+data.data[0].fatherId+")");
+			},error:function(data){
+				
+			}
+		});		
+	}
+	
+	var fatherDir = -2;
+	function openDir(id){
+		getFatherIdByResourceId(id);
+		
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"class_resource/show_resource_for_student_by_fatherId",
+			async:true,
+			dataType:"json",
+			data:{
+				classNumber:url("classNumber"),
+				fatherId:id,
+				first:1,
+				each:10,
+			},success:function(data){
+				
+				v._data.files = data.data;
+			}
+		});
+		
+	}
+	
+	function back(){
+		if(fatherDir==-2){
+			alert("已经是最上层目录");
+			return;
+		}
+		
+		openDir(fatherDir);
+	
+	}
+	getClassRoomByNumber();
+	function getClassRoomByNumber(){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"class_room/get_class_room_by_number",
+			async:true,
+			dataType:"json",
+			data:{
+				classNumber:url("classNumber")
+				
+			},success:function(data){
+				$(".classImg").attr("src",controllerUrl+"resource/"+data.data.classHeadUrl);
+				$(".className").html(data.data.className);
+				$(".teacherName").html(data.data.teacher);
+				console.log(data);
+				
+			}
+		});
+		
+	}
+
+</script>

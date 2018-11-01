@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据结构班级</title>
+		<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+		<link rel="stylesheet" href="../../static/css/base.css" />
+		<style>
+			.cq-content{
+				width: 900px;
+				float: left;
+			}
+			.cp-content{
+				margin: 10px 0 0 0;
+				width: 640px;
+				float: right;
+			}
+			.showblock{
+				cursor: pointer;
+				margin: 10px 5px 0 5px;
+				float: left;
+				border:1px solid #ccc;
+				width: 200px;
+				height: 200px;
+				text-align:  center;
+			}
+			.showblock h1{
+				margin: 10px 0 0 0 ;
+				line-height: 30px;
+				font-weight: 400;
+				font-size: 20px;
+			}
+			.showblock img{
+				
+				width: 90px;
+				height: 90px;
+				border-radius: 90px;
+				
+			}
+			.showblock .imgCenter {
+				margin: 20px 0 0 0;
+				text-align: center;
+			}
+			.showblock h2{
+				
+			}
+			.showblock:hover .t1{
+				display: none;
+			}
+			.showblock:hover .t2{
+				display: block;
+			}
+			.showblock .t2{
+				display: none;
+			}
+			
+		
+			
+		</style>
+	</head>
+<body>
+	<div class="header" id="header">
+		<div class="icon">
+			<img src="../../static/img/icon.png" class="img" />
+		</div>
+		
+		<ul>
+			<li>
+				<a href="index2login.html" style="color: white;">学生课堂</a>
+				
+				
+			</li>
+			<li>
+				<a href="../questionArea/index.html">问答专区</a>
+			</li>
+			<li>
+				<a href="../questionArea/questionBrushing.html">题库</a>
+			</li>
+			
+			
+		</ul>
+		<div class="right">
+			<a href="" >
+				购物车
+			</a>
+			<a href="">
+				登录
+			</a>
+			<a href="">
+				注册
+			</a>
+				
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="bodyer">
+		
+		
+		<div class="bodyCenter">
+			
+			<div class="cq-content"  >
+				
+				<div class="module-box">
+					<h1 class="h1">已选课程</h1>
+					<div id="showblocks">
+						
+						<div class="showblock" v-for="showblock in showblocks">
+							<a >
+								<h1>{{showblock.className}}</h1>
+								<div class="t1">
+									<div class="imgCenter">
+										<img  v-bind:src=['http://127.0.0.1:8080/resource/'+showblock.classHeadUrl]  />
+									</div>
+									<h2>活跃度:12</h2>
+								</div>
+								<div class="t2">
+									<span>任课老师:{{showblock.teacher}}</span>
+									
+									<button class="btn" v-bind:data-id="showblock.classNumber" v-bind:onclick="['goClassRoom('+showblock.classNumber+')']">进入课堂</button>
+									
+								</div>
+							</a>
+							
+						</div>
+						
+						
+						
+						<div class="clear"></div>
+					</div>
+					<div class="page-util">
+							<ul>
+								<li>首页</li>
+								<li>上一页</li>
+								<li class="page-util-active" style="color: #FFF;">1</li>
+								<li>2</li>
+								<li>3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>
+								<li>8</li>
+								<li>下一页</li>
+								<li>末页</li>
+							</ul>
+							
+						</div>
+						<div class="clear"></div>
+				</div>
+				
+				
+			</div>
+			<div class="cp-content">
+				
+				
+					
+					
+			
+			</div>
+		</div>
+		
+	</div>
+	
+</body>
+</html>
+<script src="../../static/js/font.js"></script>
+<script type="text/javascript" src="../../static/js/jquery/jquery-3.3.1.min.js" ></script>
+
+<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+<script type="text/javascript" src="../../static/js/base.js" ></script>
+
+<script>
+	
+	$("[href='enterOneClass.html']").attr("href","enterOneClass.html?classNumber="+url("classNumber"));
+	$("[href='enterOneClassFileDownload.html']").attr("href","enterOneClassFileDownload.html?classNumber="+url("classNumber"));
+	$("[href='enterOneClassHomework.html']").attr("href","enterOneClassHomework.html?classNumber="+url("classNumber"));
+	$("[href='enterOneClassTest.html']").attr("href","enterOneClassTest.html?classNumber="+url("classNumber"));
+	function goClassRoom(classNumber){
+		window.location.href = "enterOneClass.html?classNumber="+classNumber;
+		
+	}
+	
+	getMyJoinClassRoomListLimitPage();
+	function getMyJoinClassRoomListLimitPage(){
+		$.ajax({
+		type:"get",
+		url:controllerUrl+"class_room/getClassRoomListByStudentId",
+		dataType:"json",
+		data:{
+			token:localStorage["token"],
+			first:1,
+			each:8,
+		},success:function(data){
+			console.log(data);
+			new Vue({
+			  el: '#showblocks',
+			  data: {
+			    showblocks:data.data
+			  }
+			})
+		},error:function(data){
+			
+			
+		}
+	})
+		
+	}
+	
+	
+</script>

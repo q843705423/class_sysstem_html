@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+	<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+	<link rel="stylesheet" href="../../static/css/base.css" />
+	<style>
+		.cq-content{
+			width: 720px;
+			float: left;
+		}
+		.cp-content{
+			margin: 0 0 0 10px;
+			float: right;
+			width: 220px;
+			
+		}
+		.what_like{
+			
+			float: left;
+			padding: 10px;
+			margin:10px;
+		}
+		.what_like img{
+			width: 140px;
+			height:160px ;
+		}
+		.user{
+			text-align: center;
+		}
+		.user-img img{
+			width: 80px;
+			height: 80px;
+			border-radius: 80px;
+					
+		}
+		.user-name{
+			color: black;
+			cursor: pointer;
+			font-weight: 400;
+		}
+		.user-name:hover{
+			color: #00BC9B;
+		}
+		.user h3{
+			color: #e0e0e0;
+			font-size: 16px;
+			font-weight: 400;
+			
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="header" id="header">
+		<div class="icon">
+			<img src="../../static/img/icon.png" class="img" />
+		</div>
+		
+		<ul>
+			<li>
+				<a href="../index/index2login.html" >学生课堂</a>
+				
+				
+			</li>
+			<li>
+				<a href="../questionArea/index.html">问答专区</a>
+			</li>
+			<li>
+				<a href="../questionArea/questionBrushing.html" style="color: white;">题库</a>
+			</li>
+			
+			
+		</ul>
+		<div class="right">
+			<a href="" >
+				购物车
+			</a>
+			<a href="">
+				登录
+			</a>
+			<a href="">
+				注册
+			</a>
+				
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="bodyer">
+		<div class="bodyCenter">
+			<div class="cq-content">
+				<div class="module-box">
+					<div>
+						<input type="text" class="input" style="width: 200px;" placeholder="请输入你要搜索的题目或编号"/>
+						<button class="btn">搜索</button>
+					</div>
+					<div>
+						<div class="stat-list">
+							<div class="list-head">
+								<div class="item column1"></div>
+								<div class="item column1">题目</div>
+								<div class="item column2">热度</div>
+								<div class="item column3">通过率</div>
+								<div class="item column4"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="list-body">
+								<div class="item column1"><span class="radio"></span></div>
+								<div class="item column1">事务的特点</div>
+								<div class="item column2">12</div>
+								<div class="item column3">0.00%</div>
+								<div class="item column4"><button  class="btn">回答问题</button></div>
+								<div class="clear"></div>
+							</div>
+							<div class="list-body">
+								<div class="item column1"><span class="radio"></span></div>
+								<div class="item column1">where子句的...</div>
+								<div class="item column2">8</div>
+								<div class="item column3">0.00%</div>
+								<div class="item column4"><button  class="btn">回答问题</button></div>
+								<div class="clear"></div>
+							</div>
+							
+							
+							<div class="clear"></div>
+							<div class="page-util">
+								<ul>
+									<li>首页</li>
+									<li>上一页</li>
+									<li class="page-util-active" style="color: #FFF;">1</li>
+									<li>2</li>
+									<li>3</li>
+									<li>4</li>
+									<li>5</li>
+									<li>6</li>
+									<li>7</li>
+									<li>8</li>
+									<li>下一页</li>
+									<li>末页</li>
+								</ul>	
+								
+							</div>
+							<div class="clear"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="module-box">
+					<h1 class="h1">猜你喜欢</h1>
+					<div class="what_like">
+						<img src="../../static/img/studentClass/db.jpg" alt="" />						
+					</div>
+					<div class="what_like">
+						<img src="../../static/img/studentClass/db.jpg" alt="" />						
+					</div>
+					<div class="what_like">
+						<img src="../../static/img/studentClass/db.jpg" alt="" />						
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="cp-content">
+				<div class="module-box">
+					<div class="user">
+						<div class="user-img">
+							<img src="../../static/img/index/2.jpg" alt="" />
+						</div>
+						<h2 class="user-name">其乐无穷</h2>
+						<h3>已挑战:0题</h3>
+						<h3>已通过:0题</h3>
+						<h3>已提交:0题</h3>
+						
+						
+						
+					</div>
+				</div>
+				<div class="module-box">
+					<h1 class="h1">刷题榜</h1>
+					<div class="tab">
+						<ul>
+							<li class="li-active" style="width: 50px;font-size: 12px;">本周排行</li>
+							<li style="width: 50px;font-size: 12px;">总排行</li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+					<div class="">
+						
+						
+					</div>
+				</div>
+				<div class="module-box">
+					<h1 class="h1">热门课程推荐</h1>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
+<script src="../../static/js/font.js"></script>
+<script src="../../static/js/base.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/js/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(".user-img img").attr("src",controllerUrl+"resource/"+JSON.parse(localStorage["user"]).headUrl);
+	$(".user-name").html(JSON.parse(localStorage["user"]).username);
+</script>

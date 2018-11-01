@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>在线考试</title>
+	<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+	<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+	<link rel="stylesheet" href="../../static/css/base.css" />
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style>
+		.cq-content{
+			width: 658px;
+			float: left;
+		}
+		.cp-content{
+			width: 280px;
+			float: right;
+		}
+		.classInfo{
+			text-align: center;
+			
+		}
+		
+		.classInfo .class_img img{
+			cursor: pointer;
+			width: 100px;
+			height: 100px;
+			border-radius: 100px;
+			
+		}
+		.classInfo .className{
+			font-size: 14px;
+			
+			
+		}
+		.classInfo .teacherName{
+			font-size: 12px;
+			color: red;
+		}
+		.testInfo{
+			padding: 20px 0 0 0;
+			text-align: center;
+			
+		}
+		.testInfo .testName{
+			font-size: 18px;
+			color: #00BC9B;
+			
+		}
+		.testInfo .beginTime span{
+			color: #ccc;
+			font-size: 12px;
+		}
+		.testInfo .endTime span{
+			color: #ccc;
+			font-size: 12px;
+		}
+		.dialog .title{
+			padding: 20px 0 0 20px;
+		}
+		.dialog .footer{
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+			
+		}
+		.dialog .content ul li{
+			margin: 20px 0 0 0;
+		}
+		
+	</style>
+</head>
+<body>
+<div class="header" id="header">
+	<div class="icon">
+		<img src="../../static/img/icon.png" class="img" />
+	</div>
+	
+	<ul>
+		<li>
+			<a href="index2login.html" style="color: white;">学生课堂</a>
+			
+			
+		</li>
+		<li>
+			<a href="../questionArea/index.html">问答专区</a>
+		</li>
+		<li>
+			<a href="../questionArea/questionBrushing.html">题库</a>
+		</li>
+		
+		
+	</ul>
+	<div class="right">
+		<a href="" >
+			购物车
+		</a>
+		<a href="">
+			登录
+		</a>
+		<a href="">
+			注册
+		</a>
+			
+	</div>
+	<div style="clear: both;"></div>
+</div>
+<div class="bodyer">
+	<div class="bodyCenter">
+		<div class="cq-content">
+			<div class="module-box">
+				<div class="stat-list">
+					<div class="list-head">
+						
+						<div class="item column1">题目类型</div>
+						<div class="item column2">题目名</div>
+						<div class="item column3">是否完成</div>
+						<div class="item column4"></div>
+						<div class="clear"></div>
+					</div>
+					<div id="testQuestions">
+						<div class="list-body" v-for="testQuestion in testQuestions" >
+							
+							<div class="item column1">{{testQuestion.type}}</div>
+							<div class="item column2">{{testQuestion.desc}}</div>
+							<div class="item column3" v-bind:id="['question'+testQuestion.id]">未完成</div>
+							<div class="item column4"><button  class="btn" v-bind:onclick="['showTest('+testQuestion.types+','+testQuestion.id+')']" >做题</button></div>
+							<div class="clear"></div>
+						</div>
+						
+						
+					</div>
+					<div>
+						<div class="page-util">
+							<ul>
+								<li>首页</li>
+								<li>上一页</li>
+								<li class="page-util-active" style="color: #FFF;">1</li>
+								<li>2</li>
+								<li>3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>
+								<li>8</li>
+								<li>下一页</li>
+								<li>末页</li>
+							</ul>
+							
+						</div>
+					</div>
+					
+					<div class="clear"></div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="cp-content">
+			<div class="module-box">
+				
+				<h1 class="h1">课程信息</h1>
+				<div class="classInfo">
+					<div class="class_img"><img  class="classImg" /></div>
+					<div class="className"></div>
+					<div class="teacherName"></div>
+				</div>
+			</div>
+			
+			<div class="module-box">
+				
+				<h1 class="h1">考试信息</h1>
+				<div class="testInfo">
+					<div class="testName"></div>
+					<div class="beginTime">开始时间:<span>2018-05-23 12:00</span></div>
+					<div class="endTime">结束时间:<span>2018-05-23 14:00</span></div>
+				</div>
+				
+				
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	
+</div>
+<div class="mask" id="mask"></div>
+<!--
+	选择题
+-->
+<div class="dialog" id="dialog1">
+	<div class="title">
+		<span class="sortId"></span>.<span>以下选项中正确的是</span>
+		<select>
+			<option value=""></option>
+			<option value="">A</option>
+			<option value="">B</option>
+			<option value="">C</option>
+			<option value="">D</option>
+		</select>
+	</div>
+	<div class="content">
+		<ul>
+			<li>A.一个页面中id比a</li>
+			<li>B.一个页面中id比a</li>
+			<li>C.一个页面中id比a</li>
+			<li>D.一个页面中id比a</li>
+		</ul>
+
+	</div>
+	<div class="footer">
+		<button class="btn" onclick="saveAndClose(1)">确定</button>
+		<button class="btn" onclick="noSaveAndClose(1)">取消</button>
+	</div>
+</div>
+<!--
+	填空题
+-->
+<div class="dialog" id="dialog2">
+	<div class="title">
+		<span class="sortId"></span>.<span></span> <input type="text" class="input"/>
+		
+	</div>
+	
+	<div class="footer">
+		<button class="btn" onclick="saveAndClose(2)">确定</button>
+		<button class="btn" onclick="noSaveAndClose(2)">取消</button>
+	</div>
+</div>
+<!--判断题-->
+<div class="dialog" id="dialog3">
+	<div class="title">
+		<span class="sortId"></span>.<span></span>
+		
+		<select id="select">
+			<option value=""></option>
+			<option value="">yes</option>
+			<option value="">no</option>
+			
+		</select>
+	</div>
+	
+	<div class="footer">
+		<button class="btn" onclick="saveAndClose(3)">确定</button>
+		<button class="btn" onclick="noSaveAndClose(3)">取消</button>
+	</div>
+</div>
+<!-- 编程题 -->
+<div class="dialog" id="dialog4">
+	<div class="title">
+		<span class="sortId"></span>.<span></span><input type="file">
+		<div>
+			输入样例:
+			<ul>
+				<li>3</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+			
+		</div>
+		<div>
+			输出样例:
+			<ul>
+				<li>6</li>
+				<li>15</li>
+				<li>21</li>
+			</ul>
+		</div>
+		
+		
+		
+	</div>
+	
+	<div class="footer">
+		<button class="btn" onclick="saveAndClose(4)">确定</button>
+		<button class="btn" onclick="noSaveAndClose(4)">取消</button>
+	</div>
+</div>
+</body>
+</html>
+<script src="../../static/js/jquery/jquery-3.3.1.min.js"></script>
+<script src="../../static/js/font.js"></script>
+<script src="../../static/js/base.js"></script>
+<script>
+	$(".classInfo .class_img").click(function(){
+		window.location.href = "enterOneClassTest.html?classNumber="+url("classNumber");
+	})
+	
+	
+	function showTest(types,questionId){
+		getQuestionInfoByQuestionId(types,questionId);
+		showDialog({
+			id:"dialog"+types,
+			width:800,
+			height:400
+		});
+
+	}
+	function saveAndClose(types){
+		hideDialog("dialog"+types)
+		
+	}
+	function noSaveAndClose(types){
+		hideDialog("dialog"+types)
+		
+	}
+	var vue;
+	getTestQuestionListByTestId();
+	function getTestQuestionListByTestId(){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"test_question/getTestQuestionListByTestId",
+			async:true,
+			dataType:"json",
+			data:{
+				testId:url("testId"),
+				first:1,
+				each:10,
+				
+			},success:function(data){
+				
+				vue = new Vue({
+					el:"#testQuestions",
+					data:{
+						testQuestions:data.data
+					}
+					
+				});
+				getStudentAnswerByTestIdAndStudentId();
+			},error:function(data){
+				
+			}
+		});		
+	}
+	
+	function getStudentAnswerByTestIdAndStudentId(){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"test_question_student_answer/getStudentAnswerByTestIdAndStudentId",
+			async:true,
+			dataType:"json",
+			data:{
+				testId:url("testId"),
+				token:localStorage["token"],
+				
+			},success:function(data){
+				for(var i=0;i<data.data.length;i++){
+					$("#question"+data.data[i].id).html("<span style='color:red'>已完成</span>");
+					
+				}
+				
+				
+			},error:function(data){
+				
+			}
+		});		
+	}
+	
+	function getStudentAnswerAndQuestionInfoByQuestionIdAndStudentId(types,qid){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"test_question_student_answer/getStudentAnswerAndQuestionInfoByQuestionIdAndStudentId",
+			async:true,
+			dataType:"json",
+			data:{
+				token:localStorage["token"],
+				questionId:qid,
+				
+			},success:function(data){
+				console.log(data);
+				if(types==1||types=="1"){//选择题
+					$("#dialog1 .title span").html(data.data[0].desc);
+					var str = data.data[0].content;
+					str = str.split("#");
+					var c = "";
+					for(var i=0;i<str.length;i++){
+						c+= "<li>"+str[i]+"</li>"
+						
+					}
+					$("#dialog1 .content ul").html(c);
+					
+					
+					
+					$("#dialog1 .title select").html(c);
+				}else if(types==2||types=="2"){//填空题
+					$("#dialog2 .title span").html(data.data[0].desc);
+				}else if(types==3||types=="3"){//判断题
+					$("#dialog3 .title span").html(data.data[0].desc);
+				}else if(types==4||types=="4"){//编程题
+					$("#dialog4 .title span").html(data.data[0].desc);
+				}
+				
+			},error:function(data){
+				
+			}
+		});		
+	}
+	
+	function getQuestionInfoByQuestionId(types,qid){
+		
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"test_question/getQuestionInfoByQuestionId",
+			async:true,
+			dataType:"json",
+			data:{
+				questionId:qid,
+				
+			},success:function(data){
+			//	console.log(data);
+				$("#dialog"+types+" .title span").html(data.data[0].desc);
+				$("#dialog"+types+" .title .sortId").html(data.data[0].sortId);
+				if(types==1||types=="1"){//选择题
+					
+					var str = data.data[0].content;
+					str = str.split("#");
+					var c = "";
+					for(var i=0;i<str.length;i++){
+						c+= "<li>"+str[i]+"</li>"
+						
+					}
+					$("#dialog1 .content ul").html(c);
+					
+					
+					
+					$("#dialog1 .title select").html(c);
+				}else if(types==2||types=="2"){//填空题
+				
+				}else if(types==3||types=="3"){//判断题
+				}else if(types==4||types=="4"){//编程题
+				}
+			},error:function(data){
+				
+			}
+		});		
+	}
+	getTestInfoAndClassInfoByTestId();
+	function getTestInfoAndClassInfoByTestId(){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"class_test/getTestInfoAndClassInfoByTestId",
+			async:true,
+			dataType:"json",
+			data:{
+				testId:url("testId"),
+				
+			},success:function(data){
+				var d = data.data[0];
+				$(".className").html(d.className);
+				$(".beginTime").html(d.beginTime);
+				$(".endTime").html(d.endTime);
+				$(".teacherName").html(d.teacherName);
+				$(".classImg").attr("src",controllerUrl+"resource/"+d.class_head_url);
+				$(".testName").html(d.testName);
+				console.log(data);
+			},error:function(data){
+				
+			}
+		});		
+	}
+	
+	
+</script>

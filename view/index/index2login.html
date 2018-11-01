@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+		<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+		<link rel="stylesheet" href="../../static/css/base.css" />
+		<title></title>
+		<style>
+			/*通用组件*/
+			body{
+				background: #eee;
+			}
+			.show{
+				
+				position: absolute;   
+		        top: 20%;   
+		        left: 36%;   
+			}
+			.clear{
+				clear: both;
+				content: "";
+			}
+			.h1:before{
+				background: #FF6547;
+			    content: "";
+			    display: inline-block;
+			    width: 7px;
+			    height: 7px;
+			    margin-right: 5px;
+			    margin-bottom: 2px;
+			    vertical-align: middle;
+			    font-size: 22px;
+			   
+			}
+			
+			
+			
+			/**/
+			.ul-no-float li{
+				float: left;
+				padding: 10px;
+			}
+			
+			/**/
+			.bodyCenter{
+				margin: 0px auto 0px auto;
+				width: 960px;
+  				padding-top: 70px;
+			}
+			
+			.cq-content{
+				float: left;
+			    width: 690px;
+			    margin: 0 10px 0 0;
+				
+			}
+			.cp-content{
+				float: right;
+				width: 240px;
+				margin: 0 10px 0 0 ;
+			}
+			/*块组件标题*/
+			.h1{
+				font-size:16px ;
+				 font-weight: 400;
+			}
+			/*基本块组件*/
+			.module-box{
+				margin: 10px 0 0 0 ;
+				padding: 20px;
+				background: white;
+			}
+			.module-box a {
+			    display: inline-block;
+			    margin: 0 22px;
+			}
+			.module-box h2{
+				font-weight: 400;
+				font-size: 14px;
+			}
+			.module-box .i1 {
+			    display: inline-block;
+			    width: 60px;
+			    height: 40px;
+			    background: url(../../static/img/index/课程选择.png) no-repeat;
+			}
+			.module-box .i2 {
+			    display: inline-block;
+			    width: 60px;
+			    height: 40px;
+			    background: url(../../static/img/index/专项训练.png) no-repeat;
+			}
+			.module-box .i3 {
+			    display: inline-block;
+			    width: 60px;
+			    height: 40px;
+			    background: url(../../static/img/index/视频推荐.png) no-repeat;
+			}
+			/*表格显示*/
+			.stat-list{
+				margin: 10px 0 0 0;
+				
+			}
+			.list-head{
+				background: #ededed;
+				color: #999;
+				
+			}
+			 .item{
+				float: left;
+				text-align: center;
+				padding: 10px;
+				color: #b8b6b8;;
+				font-size: 14px;
+				
+			}
+			.list-body:hover .item{
+				color: #123;
+			}
+			.column1{
+				width: 100px;
+				    line-height: 42px;
+			}
+			.column2{
+				width: 120px;
+				    line-height: 42px;
+			}
+			.column3{
+				width: 80px;
+				    line-height: 42px;
+			}
+			.column4{
+				width: 140px;
+			}
+			/*多选框*/
+			.radio{
+				    border: 1px solid #DDD;
+				    vertical-align: -3px;
+				    width: 14px;
+				    height: 14px;
+				    
+				    background: #FFF;
+				    display: inline-block;
+				    margin-right: 3px;
+				    border-radius: 2px;
+				    line-height: normal;
+				    position: relative;
+				    cursor: pointer;
+			}
+			
+			/*绿色按钮*/
+			.btn{
+				padding: 10px 0;
+			    background: #00BC9B;
+			    display: inline-block;
+			    text-align: center;
+			    
+			    width: 110px;
+			    color: #FFF;
+			    font-size: 14px;
+			    border-radius: 3px;
+			    border: none 0;
+			    cursor: pointer;
+			   
+			    outline: 0;
+			    white-space: nowrap;
+			}
+			
+			.showblock{
+				cursor: pointer;
+				margin: 10px 5px 0 5px;
+				float: left;
+				border:1px solid #ccc;
+				width: 200px;
+				height: 200px;
+				text-align:  center;
+			}
+			.showblock h1{
+				margin: 10px 0 0 0 ;
+				line-height: 30px;
+				font-weight: 400;
+				font-size: 20px;
+			}
+			.showblock img{
+				
+				width: 90px;
+				height: 90px;
+				border-radius: 90px;
+				
+			}
+			.showblock .imgCenter {
+				margin: 20px 0 0 0;
+				text-align: center;
+			}
+			.showblock h2{
+				
+			}
+			.showblock:hover .t1{
+				display: none;
+			}
+			.showblock:hover .t2{
+				display: block;
+			}
+			.showblock .t2{
+				display: none;
+			}
+			
+			
+			/*聊天模块*/
+			.talk li{
+				margin-left:-30px;
+				margin: 10px 0;
+				border-bottom: 1px solid #eee;
+			}
+			
+			.talk .head{
+				width: 60px;
+				height: 60px;
+				border-radius: 60px;
+			}
+			.head-icon{
+				float:left;
+			}
+			.talk .comment{
+				float: left;
+			}
+			.talk .comment .detail1{
+				margin: 5px 0 0 0 ;
+			}
+			.talk .comment .detail2{
+				margin: 5px 0 0 0 ;
+			}
+			.talk .comment .detail1 span{
+				float: right;
+			}
+			.talk .comment .detail2 a{
+				color: #25bb9b;
+				float: right;
+			}
+			.time{
+				font-size: 12px;
+			}
+			/*丰满的输入框*/
+			.input{
+				border: 1px solid #d4d4d4;
+			    color: #34495e;
+			    font-family: Lato,sans-serif;
+			    font-size: 14px;
+			    padding: 8px 5px 7px;
+			    width: 168px;
+			    height: 22px;
+			    border-radius: 3px;
+			    outline: 0;
+			    margin: 10px 0 0 0;
+			}
+			/**/
+			.userhead{
+				text-align: center;
+			}
+			.userhead img{
+				width:100px;
+				height: 100px;
+				border-radius: 100px;
+			}
+			.tui  li{
+				margin: 0  0 0 -10px;
+			}
+			.tui img{
+				text-align: center;
+				width: 140px;
+				height: 130px;
+				cursor: pointer;
+			}
+			.dialog .title{
+				text-align: center;
+				margin: 20px 0 0 0;
+				
+			}
+			.dialog .content{
+				margin: 40px 0 0 0 ;
+				padding: 20px;
+				font-size: 12px;
+				
+				
+			}
+			
+			.dialog .footer{
+				position: absolute;
+				bottom: 10px;
+				right:  10px;
+				
+				
+				text-align: right;
+				
+			}
+			.tui{
+				text-align: center;
+				margin: 0 0 0 0;
+				padding: 0 0 0 0;
+			}
+			.tui li{
+				padding: 10px;
+				
+			}
+			
+			.tui  li img{
+				width:120px;
+				height: 120px;
+				border-radius: 20px;
+				
+			}
+		</style>
+		
+	</head>
+	<body >
+		<div class="header" id="header">
+			<div class="icon">
+				<img src="../../static/img/icon.png" class="img" />
+			</div>
+			
+			<ul>
+				<li>
+					<a href="" style="color: white;">学生课堂</a>
+					
+					
+				</li>
+				<li>
+					<a href="../questionArea/index.html">问答专区</a>
+				</li>
+				<li>
+					<a href="../questionArea/questionBrushing.html">题库</a>
+				</li>
+				
+				
+			</ul>
+			<div class="right">
+				<a href="" >
+					购物车
+				</a>
+				<a href="">
+					登录
+				</a>
+				<a href="">
+					注册
+				</a>
+					
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="bodyer">
+			
+			<div class="bodyCenter">
+				<div class="cq-content">
+					<div class="module-box">
+						<a href="classChoose.html">
+							<i class="i1"></i>
+							<h2>课程选择</h2>
+						</a>
+						
+						<a href="../questionArea/questionBrushing.html">
+							<i class="i2"></i>
+							<h2>专项训练</h2>
+						</a>
+						
+						<!--<a href="">
+							<i  class="i3"></i>
+							<h2>视频推荐</h2>
+						</a>-->
+					</div>
+					<div class="module-box">
+						<h1 class="h1">
+							公告栏
+							
+						</h1>
+						<div class="stat-list">
+							<div class="list-head">
+								<div class="item column1"></div>
+								<div class="item column1">课程</div>
+								<div class="item column2">内容</div>
+								<div class="item column3">公告时间</div>
+								<div class="item column4"></div>
+								<div class="clear"></div>
+							</div>
+							<div id="notices">
+								<div class="list-body"  v-for="notice in notices">
+									<div class="item column1"><span class="radio"></span></div>
+									<div class="item column1"> {{ notice.className }}</div>
+									<div class="item column2">{{ notice.noticeContent }}</div>
+									<div class="item column3">{{ notice.time }}</div>
+									<div class="item column4"><button  class="btn" v-bind:data-id="notice.id" v-bind:onclick="['lookNotice('+notice.id+')']">查看详情</button></div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							
+							
+							<div class="clear"></div>
+						</div>
+						
+					</div>
+					<div class="module-box">
+						<h1 class="h1">所有已选课程</h1>
+						<div id="showblocks">
+							
+							<div class="showblock" v-for="showblock in showblocks">
+								<a v-bind:href="['enterOneClass.html?classNumber='+showblock.classNumber]">
+									<h1>{{showblock.className}}</h1>
+									<div class="t1">
+										<div class="imgCenter">
+											
+											<img  v-bind:src="['http://127.0.0.1:8080/resource/'+showblock.classHeadUrl]"//>
+										</div>
+										<h2>活跃度:12</h2>
+									</div>
+									<div class="t2">
+										<span>任课老师:{{showblock.teacher}}</span>
+										
+										<button class="btn" v-bind:data-id="showblock.classNumber">加入课程</button>
+										
+									</div>
+								</a>
+								
+							</div>
+							
+							<button class="btn" style="margin: 10px 0 0 10px;width: 610px;" onclick="lookMoreMyChooseClass()">查看更多已选课程</button>
+							
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="module-box">
+						<h1 class="h1">大家热议</h1>
+						<ul class="talk">
+							<li>
+								<div class="head-icon">
+									<a href="">
+										<img id="headUrl" src="../../static/img/studentClass/homework.jpg" class="head"  alt="" />
+									</a>
+								</div>								
+								<div class="comment">
+									<div class="detail1">其乐无穷  <span>2018-05-17</span></div>
+									<div class="detail2">事务处理的必要不充分条件是    <a href="../questionArea/index.html">查看全部</a></div>
+								</div>
+								
+								<div class="clear"></div>
+							</li>
+							<li>
+								<div class="head-icon">
+									<a href="">
+										<img src="../../static/img/studentClass/homework.jpg" class="head"  alt="" />
+									</a>
+								</div>								
+								<div class="comment">
+									<div class="detail1">其乐无穷  <span>2018-05-17</span></div>
+									<div class="detail2">事务处理的必要不充分条件是    <a href="../questionArea/index.html">查看全部</a></div>
+								</div>
+								
+								<div class="clear"></div>
+							</li>
+							<li>
+								<div class="head-icon">
+									<a href="">
+										<img src="../../static/img/studentClass/homework.jpg" class="head"  alt="" />
+									</a>
+								</div>								
+								<div class="comment">
+									<div class="detail1">其乐无穷  <span>2018-05-17</span></div>
+									<div class="detail2">事务处理的必要不充分条件是    <a href="../questionArea/index.html">查看全部</a></div>
+								</div>
+								
+								<div class="clear"></div>
+							</li>
+						</ul>
+					</div>
+					
+				</div>
+				<div class="cp-content">
+					<div class="module-box">
+						<span class="time">05-17</span> 周四
+						<!--<button class="btn">签到</button>-->
+						
+					</div>
+					<div class="module-box">
+						<div class="userhead">
+							<img class="headUrl" src="../../static/img/index/2.jpg" alt="" />
+							<br />
+							<div class="username"><a href="">其乐无穷</a></div>
+							
+						</div>
+						
+					</div>
+					<div class="module-box">
+						<h1 class="h1">完善个人信息</h1>
+						<input type="text" placeholder="所在的学校" class="input" id="school" />
+						<input type="text" placeholder="所属的专业" class="input" id="professional" />
+						<input type="text" placeholder="感兴趣的课程" class="input" id="classes"/>
+						
+						<button class="btn" style="width: 182px;margin: 10px 0 0 0;" onclick="changeUserInfoAboutShcoolInfo()">确定</button>
+					</div>
+					
+					<div class="module-box">
+						<h1 class="h1">热门推荐</h1>
+						<ul class="tui" id="tui">
+							<li v-for="data in datas">
+								<a href="joinOneClass.html?classNumber=1">
+									<img v-bind:src="['http://127.0.0.1:8080/resource/'+data.class_head_url]" alt="" />
+								</a>
+							</li>
+							
+							
+						</ul>
+						
+					
+						
+					</div>
+				</div>
+				
+			</div>
+			
+			
+			
+		</div>
+		
+		
+		<div class="footer">
+			
+		</div>
+		
+		
+	</body>
+
+	
+	<div id="dialog" class="dialog">
+		<div class="title">html5实践应用</div>
+		<div class="content">上课时间提早30分钟</div>
+		<div class="footer">
+			<button class="btn" onclick="hideDialog()">我已经知道了</button>	
+			
+		</div>
+		
+	</div>
+	<div id="mask" class="mask"></div>
+</html>
+<script>
+
+	/**
+	 * 弹出登录事件
+	 */
+	$(".studyButton").click(function(){
+		$(".show").fadeIn("slow");
+		$(".bodyer").fadeOut("slow");
+	});
+	
+</script>
+<script type="text/javascript" src="../../static/js/font.js"></script>
+<script type="text/javascript" src="../../static/js/base.js" ></script>
+
+
+<script>
+	$.ajax({
+		type:"get",
+		url:controllerUrl+"class_notice/show_my_some_notice",
+		dataType:"json",
+		data:{
+			token:localStorage["token"]
+		},success:function(data){
+		
+			console.log(data);
+			new Vue({
+			  el: '#notices',
+			  data: {
+			    notices:data.data
+			  }
+			})
+			
+		}
+	});
+	$(".headUrl").attr("src",controllerUrl+"resource/"+JSON.parse(localStorage["user"]).headUrl);
+	$(".username a").html(JSON.parse(localStorage["user"]).username);
+	getSchoolAndProfessionalByUserId();
+	function getSchoolAndProfessionalByUserId(){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"user_info/getSchoolAndProfessionalByUserId",
+			async:true,
+			dataType:"json",
+			data:{
+				token:localStorage["token"],
+				
+			},success:function(data){
+				console.log(data);
+				if(data.data[0]!=null){
+					$("#school").val(data.data[0].school);
+					$("#professional").val(data.data[0].professional);
+					$("#classes").val(data.data[0].classes);
+				}
+				
+			
+			},error:function(data){
+				
+			}
+		});		
+	}
+	
+	
+	$.ajax({
+		type:"get",
+		url:controllerUrl+"class_room/get_some_class_room_info",
+		dataType:"json",
+		data:{
+			token:localStorage["token"],
+			first:1,
+			each:3,
+		},success:function(data){
+			console.log(data);
+			new Vue({
+			  el: '#showblocks',
+			  data: {
+			    showblocks:data.data
+			  }
+			})
+		},error:function(data){
+			
+			
+		}
+	})
+	
+	function lookNotice(id){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"class_notice/get_notice_info_by_notice_id",
+			async:true,
+			dataType:"json",
+			data:{
+				noticeId:id,
+			},success:function(data){
+				
+				$(".dialog .content").html(data.data.noticeContent);
+				$(".dialog .title").html(data.data.noticeTitle);
+			},error:function(data){
+				console.log(data);
+			}
+		});
+		showDialog({
+			width:400,
+			height:400,
+			id:"#dialog",//TODO
+			
+		});
+	}
+	
+	function changeUserInfoAboutShcoolInfo(){
+		if(school.value==""){
+			$("#school").focus();
+			return;
+			
+		}
+		if(professional.value==""){
+			$("#professional").focus();
+			return;
+			
+		}
+		if(classes.value==""){
+			$("#classes").focus();
+			return;
+			
+		}
+		
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"user_info/changeUserInfoAboutShcoolInfo",
+			dataType:"json",
+			data:{
+				token:localStorage["token"],
+				school:school.value,
+				professional:professional.value,
+				classes:classes.value,
+			},success:function(data){
+				alert("修改成功");
+			},error:function(data){
+				alert("修改失败");
+				
+			}
+		})
+		
+		
+	}
+	sendSomeClassYouNoChoose();
+	function sendSomeClassYouNoChoose(){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"class_room/sendSomeClassYouNoChoose",
+			async:true,
+			dataType:"json",
+			data:{
+				token:localStorage["token"],
+				first:1,
+				each:3,
+				
+			},success:function(data){
+				console.log(data);
+				new Vue({
+					el:"#tui",
+					data:{
+						datas:data.data
+					}
+					
+				})
+			},error:function(data){
+				
+			}
+		});		
+	}
+	
+	function lookMoreMyChooseClass(){
+		window.location.href = "lookMoreMyChooseClass.html";
+		
+	}
+	
+	
+</script>
+
+
+

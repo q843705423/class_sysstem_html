@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+		<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+		<link rel="stylesheet" href="../../static/css/base.css" />
+		<title></title>
+		<style>
+			.cq-content{
+				float: left;
+				width:180px;
+				margin: 0 5px 0 0;
+			}
+			.cp-content{
+				float: left;
+				width:760px;
+			}
+			
+			.classInfo{
+				text-align: center;
+
+			}
+			.classInfo .img	img{
+				width: 88px;
+				height: 88px;
+				border-radius: 88px;
+				
+			}
+			.column2{
+				width:200px
+			}
+			.menu ul{
+				padding:  0 0 0 0;
+				margin:  0 0 0 0;
+				
+			}
+			.menu ul li{
+				padding: 5px;
+			}
+			.menu ul li a img{
+				width: 16px;
+				height: 16px;
+				
+			}
+			
+			.dialog .footer{
+				position: absolute;
+				bottom:20px;
+				right:20px;
+				
+			}
+			.dialog .title{
+				text-align: center;
+				font-size: 22px;
+			}
+			.dialog .content{
+				padding:  25px 5px 5px 5px;
+				text-align: center;
+			}
+		
+	
+		</style>
+		
+	</head>
+	<body >
+		<div class="header" id="header">
+			<div class="icon">
+				<img src="../../static/img/icon.png" class="img" />
+			</div>
+			
+			<ul>
+				<li>
+					<a href="index2teacher.html" style="color: white;">课堂管理</a>
+					
+					
+				</li>
+				
+				
+				
+			</ul>
+			<div class="right">
+				<a href="" >
+					购物车
+				</a>
+				<a href="">
+					登录
+				</a>
+				<a href="">
+					注册
+				</a>
+					
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="bodyer">
+			
+			<div class="bodyCenter">
+				<div class="cq-content">
+					<div class="module-box">
+						<div class="classInfo"> 
+							<div class="img">
+								<img src="http://localhost:8080/resource/seofhsohflkzshbfclzjk.jpg" alt="" />
+							</div>
+							<div class="className">
+								javaEE企业级开发
+							</div>
+							<div class="classDesc">
+								周三1-2节课
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="module-box">
+						<div class="menu">
+						<ul>
+							<li>	
+								<a onclick="go('enterOneClass.html')">
+									<img src="../../static/img/teacher/列表.png" alt="" />
+									<span>班级列表</span>
+								</a>
+							</li>
+							<li>	
+								<a onclick="go('enterOneClassTest.html')">
+									<img src="../../static/img/teacher/考试.png" alt="" />
+									<span>考试信息</span>
+								</a>
+							</li>
+							<li>	
+								<a onclick="go('enterOneClassSign.html')">
+									<img src="../../static/img/teacher/签到.png" alt="" />
+									<span>班级签到</span>
+								</a>
+							</li>
+							<li>	
+								<a onclick="go('enterOneClassNotice.html')">
+									<img src="../../static/img/teacher/公告发布.png" alt="" />
+									<span>发布公告</span>
+								</a>
+							</li>
+							<li>	
+								<a onclick="go('enterOneClassResource.html')">
+									<img src="../../static/img/teacher/上传.png" alt="" />
+									<span>资源管理</span>
+								</a>
+							</li>
+							<li>	
+								<a onclick="go('enterOneClassHomework.html')">
+									<img src="../../static/img/teacher/作业.png" alt="" />
+									<span>作业信息</span>
+								</a>
+							</li>
+							
+						</ul>
+						</div>
+					</div>
+				
+					
+					
+				</div>
+				<div class="cp-content">
+					<div class="module-box">
+						<h1 class="h1">
+							班级公告
+							<div style="text-align: right;float: right;">
+								
+								<button class="btn" onclick="showPublishNoticeDialog()">发布新公告</button>
+							</div>
+							
+							<div class="clear"></div>
+						</h1>
+						<div class="stat-list">
+							<div class="list-head">
+								<div class="item column1">标题</div>
+								<div class="item column2">内容</div>
+								<div class="item column1">发布时间</div>
+								<div class="item column2">是否显示</div>
+								<div class="clear"></div>
+							</div>
+							<div id="notices">
+								<div class="list-body" v-for="data in datas">
+									<div class="item column1">{{data.noticeTitle}}</div>
+									<div class="item column2">{{data.noticeContent}}</div>
+									<div class="item column1">2018-05-22</div>
+									<div class="item column2">
+										<span style="cursor: pointer;color: #00BC9B;" v-bind:onclick="['lookNotice('+data.id+')']">查看详情</span>
+										<span style="color: red;cursor: pointer;" v-if="data.isShow==1" v-bind:onclick="['showOrHideNotice('+data.id+')']">显示</span>
+										<span style="color: #ccc;cursor: pointer;" v-if="data.isShow==0" v-bind:onclick="['showOrHideNotice('+data.id+')']">隐藏</span>
+										<span style="cursor: pointer;" v-bind:onclick="['deleteNoticeByNoticeId('+data.id+')']">删除</span>
+										
+									</div>
+									
+									<div class="clear"></div>
+								</div>
+							
+							</div>
+							
+							
+							<div class="clear"></div>
+						</div>
+						<div class="page-util">
+							<ul>
+								<li>首页</li>
+								<li>上一页</li>
+								<li class="page-util-active" style="color: #FFF;">1</li>
+								<li>2</li>
+								<li>3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>									
+								<li>8</li>
+								<li>下一页</li>
+								<li>末页</li>
+							</ul>
+						</div>
+						<div class="clear"></div>
+						
+					</div>
+					
+				</div>	
+				
+			</div>
+			
+			
+			
+		</div>
+		
+		
+		<div class="footer">
+			
+		</div>
+		
+		
+	</body>
+
+	
+	<div id="dialog" class="dialog">
+		<div class="title"></div>
+		<div class="content">上课时间提早30分钟</div>
+		<div class="footer">
+			<button class="btn" onclick="hideDialog()">我已经知道了</button>	
+			
+		</div>
+		
+	</div>
+	<div id="mask" class="mask"></div>
+	
+	<div id="publishDialog" class="dialog">
+		<div class="title"><input type="text" class="input" id="dialogTitle" placeholder="请输入标题" /></div>
+		<div class="content">
+			<textarea id="dialogContent" class="input" style="width: 300px;height: 200px;">
+				
+				
+			</textarea>
+			
+		</div>
+		<div class="footer">
+			<button class="btn" onclick="publish()">发布</button>	
+			<button class="btn" onclick="hideDialog()">取消</button>
+		</div>
+		
+	</div>
+</html>
+<script>
+
+	
+</script>
+<script type="text/javascript" src="../../static/js/font.js"></script>
+<script type="text/javascript" src="../../static/js/base.js" ></script>
+<script type="text/javascript" src="../../static/js/teacher.js" ></script>
+
+<script>
+	//查看详情
+	function lookNotice(id){
+		showDialog({
+			id:"dialog",
+			width:400,
+			height:400,
+		})
+		$.ajax({
+			url:controllerUrl+"class_notice/get_notice_info_by_notice_id",
+			dataType:"json",
+			data:{
+				noticeId:id,
+			},success:function(data){
+				console.log(data);
+				
+				$("#dialog .title").html(data.data.noticeTitle);
+				$("#dialog .content").html(data.data.noticeContent);
+			}
+			
+		})
+		
+		
+	}
+	
+	function showPublishNoticeDialog(){
+		$("#dialogTitle").val("");
+		$("#dialogContent").val("");
+		showDialog({
+			id:"publishDialog",
+			width:400,
+			height:400,
+			
+		})
+		
+	}
+	function publish(){
+		var dialogTitleContent = $("#dialogTitle").val();
+		
+		if(dialogTitleContent==""){
+			
+		
+			$("#dialogTitle").focus();
+			return;
+		}
+		var dialogContentText = $("#dialogContent").val();
+		if(dialogContentText==""){
+			 $("#dialogContent").focus();
+		 	return;
+		}
+		$.ajax({
+			url:controllerUrl+"class_notice/publishOneClassNotice",
+			dataType:"json",
+			data:{
+				token:localStorage["token"],
+				classNumber:url("classNumber"),
+				title:dialogTitleContent,
+				content:dialogContentText,
+			},success:function(data){
+				if(data.info=="no_perssion"){
+					show("你没有发布公告的权限");
+				}else if(data.info=="success"){
+					show("发布公告成功");
+					getClassNoticeListByClassNumber(1);
+					hideDialog();
+				}
+				
+			
+			}
+		});
+		
+		
+		
+	}
+	
+	
+	function deleteNoticeByNoticeId(id){
+	
+		$.ajax({
+			url:controllerUrl+"class_notice/deleteNoticeByNoticeId",
+			dataType:"json",
+			data:{
+				token:localStorage["token"],
+				noticeId:id
+			},success:function(data){
+				console.log(data);
+				if(data.info=="already delete"){
+					show("该条通知已经不存在");
+				}else if(data.info=="Insufficient permissions"){
+					show("权限不足");
+					
+				}else if(data.info=="success"){
+					getClassNoticeListByClassNumber(1);
+					show("删除成功");
+				}else{
+					show("未知错误");
+				}
+				
+				
+				
+			}
+			
+		})
+		
+		
+	}
+
+	getClassNoticeListByClassNumber(1);
+	var vue =null;
+	function getClassNoticeListByClassNumber(f){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"class_notice/getClassNoticeListByClassNumber",
+			async:true,
+			dataType:"json",
+			data:{
+				classNumber:url("classNumber"),
+				first:f,
+				each:10,
+				
+			},success:function(data){
+			//	console.log(data);
+				if(vue=="null"||vue==null){
+					vue= new Vue({
+						el:"#notices",
+						data:{
+							datas:data.data
+						},
+						
+					})
+				}else{
+					
+					vue._data.datas = data.data;
+				}
+				
+				
+			},error:function(data){
+				
+			}
+		});		
+	}
+	function showOrHideNotice(nid){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"class_notice/showOrHideNotice",
+			async:true,
+			dataType:"json",
+			data:{
+				noticeId:nid,
+				token:localStorage["token"],
+				
+			},success:function(data){
+				if(data.info=="already_delete"){
+					show("该信息已经不存在");
+				}else if(data.info=="no_permission"){
+					show("没有权限");
+				}else if(data.info=="success"){
+					getClassNoticeListByClassNumber(1);
+					
+				}else if(data.info==""){
+					
+				}
+				
+			}
+			
+		});
+		
+	}
+	
+	
+</script>
+
+
+

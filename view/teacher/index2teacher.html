@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+		<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+		<link rel="stylesheet" href="../../static/css/base.css" />
+		<title></title>
+		<style>
+			/*通用组件*/
+			body{
+				background: #eee;
+			}
+			.show{
+				
+				position: absolute;   
+		        top: 20%;   
+		        left: 36%;   
+			}
+			.clear{
+				clear: both;
+				content: "";
+			}
+			.h1:before{
+				background: #FF6547;
+			    content: "";
+			    display: inline-block;
+			    width: 7px;
+			    height: 7px;
+			    margin-right: 5px;
+			    margin-bottom: 2px;
+			    vertical-align: middle;
+			    font-size: 22px;
+			   
+			}
+			
+			
+			
+			/**/
+			.ul-no-float li{
+				float: left;
+				padding: 10px;
+			}
+			
+			/**/
+			.bodyCenter{
+				margin: 0px auto 0px auto;
+				width: 960px;
+  				padding-top: 70px;
+			}
+			
+			.cq-content{
+				float: left;
+			    width: 690px;
+			    margin: 0 10px 0 0;
+				
+			}
+			.cp-content{
+				float: right;
+				width: 240px;
+				margin: 0 10px 0 0 ;
+			}
+			/*块组件标题*/
+			.h1{
+				font-size:16px ;
+				 font-weight: 400;
+			}
+			/*基本块组件*/
+			.module-box{
+				margin: 10px 0 0 0 ;
+				padding: 20px;
+				background: white;
+			}
+			.module-box a {
+			    display: inline-block;
+			    margin: 0 22px;
+			}
+			.module-box h2{
+				font-weight: 400;
+				font-size: 14px;
+			}
+			.module-box .i1 {
+			    display: inline-block;
+			    width: 60px;
+			    height: 40px;
+			    background: url(../../static/img/index/课程选择.png) no-repeat;
+			}
+			.module-box .i2 {
+			    display: inline-block;
+			    width: 60px;
+			    height: 40px;
+			    background: url(../../static/img/index/专项训练.png) no-repeat;
+			}
+			.module-box .i3 {
+			    display: inline-block;
+			    width: 60px;
+			    height: 40px;
+			    background: url(../../static/img/index/视频推荐.png) no-repeat;
+			}
+			/*表格显示*/
+			.stat-list{
+				margin: 10px 0 0 0;
+				
+			}
+			.list-head{
+				background: #ededed;
+				color: #999;
+				
+			}
+			 .item{
+				float: left;
+				text-align: center;
+				padding: 10px;
+				color: #b8b6b8;;
+				font-size: 14px;
+				
+			}
+			.list-body:hover .item{
+				color: #123;
+			}
+			.column1{
+				width: 100px;
+				    line-height: 42px;
+			}
+			.column2{
+				width: 120px;
+				    line-height: 42px;
+			}
+			.column3{
+				width: 80px;
+				    line-height: 42px;
+			}
+			.column4{
+				width: 140px;
+			}
+			
+			.classRoomInfo{
+				
+			}
+			.classRoomInfo ul{
+				padding:  0 0 0 0;
+				margin:  0 0 0 0;
+			}
+			.classRoomInfo .classImg{
+				float: left;
+				
+			}
+			.classRoomInfo img{
+				cursor: pointer;
+				width:100px;
+				height: 100px;
+				border-radius: 100px;
+				
+			}
+			.classRoomInfo ul{
+				margin: 20px 0 0 0;
+			}
+			.classRoomInfo ul li{
+				margin: 20px 0 0 0;
+				border-bottom: 1px dotted #E0E0E0;
+			}
+			.classRoomInfo ul li:hover{
+				background: #e3e3e3;
+			}
+			.classRoomInfo .classInfo{
+				float: left;
+				margin: 20px 0 0 0 ;
+			}
+			.classRoomInfo .classInfo .className{
+				line-height: 20px;
+				font-size: 22px;
+    			margin: 0 0 0 40px;
+				
+			}
+			.className:hover{
+				color: red;
+				cursor: pointer;
+			}
+			.classRoomInfo .classInfo .classDesc{
+				margin: 20px 0 0 42px;
+				
+			}
+			.classRoomInfo .otherInfo{
+				
+				float:right;
+			}
+			.classRoomInfo .otherInfo .beginTime{
+				margin: 20px 0 0 0;
+				
+			}
+			.code{
+				margin: 20px 0 0 0;
+			}
+			.userhead{
+				text-align: center;
+			}
+			.userhead img{
+				width:100px;
+				height: 100px;
+				border-radius: 100px;
+			}
+			
+			.notForget ul{
+				margin:  0 0 0 0;
+				padding: 0 0 0 0;
+				
+			}
+			.notForget ul li{
+				padding: 5px;
+				font-size: 12px;
+				cursor: pointer;
+				
+			}
+			.notForget ul li:hover{
+				color: red;
+				
+			}
+	
+		</style>
+		
+	</head>
+	<body >
+		<div class="header" id="header">
+			<div class="icon">
+				<img src="../../static/img/icon.png" class="img" />
+			</div>
+			
+			<ul>
+				<li>
+					<a href="" style="color: white;">课堂管理</a>
+					
+					
+				</li>
+				
+				
+				
+			</ul>
+			<div class="right">
+				<a href="" >
+					购物车
+				</a>
+				<a href="">
+					登录
+				</a>
+				<a href="">
+					注册
+				</a>
+					
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="bodyer">
+			
+			<div class="bodyCenter">
+				<div class="cq-content">
+					<div class="module-box">
+						<a href="createClassRoom.html">
+							<i class="i1"></i>
+							<h2>新增班级</h2>
+						</a>
+						
+						<a href="makeTest.html">
+							<i class="i2"></i>
+							<h2>试卷制作</h2>
+						</a>
+						
+						<a href="myTests.html">
+							<i  class="i3"></i>
+							<h2>我的试卷</h2>
+						</a>
+					</div>
+					<div class="module-box">
+						<h1 class="h1">
+							班级列表
+							
+						</h1>
+						<!--
+                        	作者：843705423@qq.com
+                        	时间：2018-05-29
+                        	描述：
+                        -->
+                        <div class="classRoomInfo">
+						<ul id="classRooms">
+							<li v-for="data in datas">
+								<div class="classImg"> 
+									<img v-bind:src="['http://localhost:8080/resource/'+data.classHeadUrl]" v-bind:onclick="['goClassRoom('+data.classNumber+')']"  alt="" />
+								</div>
+								<div class="classInfo">
+									<div class="className">
+										课程名:<span v-bind:onclick="['goClassRoom('+data.classNumber+')']" >{{data.className}}</span> 
+									</div>
+									<div class="classDesc">
+										备注: <span>{{data.remarks}}</span> 
+									</div>
+								</div>
+								<div class="otherInfo">
+									<div class="beginTime">
+										开班时间:
+										<span>{{data.beginTime}}</span>
+									</div>
+									<div class="code">
+										邀请码:
+										<span id="code">{{data.requestCode}}</span>
+										
+									</div>
+								</div>
+								
+								<div class="clear"></div>
+							</li>
+							
+						</ul>
+						
+						</div>
+						<div class="page-util">
+							<ul>
+								<li>首页</li>
+								<li>上一页</li>
+								<li class="page-util-active" style="color: #FFF;">1</li>
+								<li>2</li>
+								<li>3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>									
+								<li>8</li>
+								<li>下一页</li>
+								<li>末页</li>
+							</ul>
+						</div>
+						<div class="clear"></div>
+					</div>
+					
+					
+					
+				</div>
+				<div class="cp-content">
+				
+					<div class="module-box">
+						<div class="userhead">
+							<img class="headUrl" src="../../static/img/index/2.jpg" alt="" />
+							<br />
+							<div class="username"><a href="">其乐无穷</a></div>
+							
+						</div>
+						
+					</div>
+					
+					<div class="module-box">
+						<h1 class="h1">备忘录</h1>
+						<div class="notForget">
+						<ul>
+							<li>孙同学请假</li>
+							<li>下节课让李同学回答问题</li>
+						</ul>
+						<button class="btn">新增备忘</button>
+						</div>
+					
+						
+					
+						
+					</div>
+				</div>
+				
+			</div>
+			
+			
+			
+		</div>
+		
+		
+		<div class="footer">
+			
+		</div>
+		
+		
+	</body>
+
+	
+	<div id="dialog" class="dialog">
+		<div class="title">html5实践应用</div>
+		<div class="content">上课时间提早30分钟</div>
+		<div class="footer">
+			<button class="btn" onclick="hideDialog()">我已经知道了</button>	
+			
+		</div>
+		
+	</div>
+	<div id="mask" class="mask"></div>
+</html>
+<script>
+
+	
+</script>
+<script type="text/javascript" src="../../static/js/font.js"></script>
+<script type="text/javascript" src="../../static/js/base.js" ></script>
+
+
+<script>
+	
+	$(".headUrl").attr("src",controllerUrl+"resource/"+JSON.parse(localStorage["user"]).headUrl);
+	$(".username a").html(JSON.parse(localStorage["user"]).username);
+	
+	getClassRoomListByTeacherId();
+	function getClassRoomListByTeacherId(){
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"class_room/getClassRoomListByTeacherId",
+			async:true,
+			dataType:"json",
+			data:{
+				token:localStorage["token"],
+				
+			},success:function(data){
+				console.log(data);
+				new Vue({
+					el:"#classRooms",
+					data:{
+						datas:data.data
+					}
+					
+				})
+				
+			},error:function(data){
+				
+			}
+		});		
+	}
+	function goClassRoom(classNumber){
+	//	alert(classNumber)
+		window.location.href = "enterOneClass.html?classNumber="+classNumber;
+	}
+	
+
+	
+	
+</script>
+
+
+

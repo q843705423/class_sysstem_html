@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>发布问题</title>
+		<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+		<link rel="stylesheet" href="../../static/css/base.css" />
+		<style>
+			.select{
+				margin: 10px 0 0 0;
+				width: 300px;
+				padding: 10px;
+				border-radius: 5px;
+			}
+			.select option{
+				height: 100px;
+			}
+			.in{
+				width: 800px;
+				height: 400px;
+				border: 1px solid #e0e0e0;
+				margin: 10px 0 0 0;
+				
+			}
+			
+			
+		</style>
+	</head>
+<body>
+	<div class="header" id="header">
+		<div class="icon">
+			<img src="../../static/img/icon.png" class="img" />
+		</div>
+		
+		<ul>
+			<li>
+				<a href="../index/index2login.html">学生课堂</a>
+				
+				
+			</li>
+			<li>
+				<a href="../questionArea/index.html"  style="color: white;">问答专区</a>
+			</li>
+			<li>
+				<a href="../questionArea/questionBrushing.html" >题库</a>
+			</li>
+			
+			
+		</ul>
+		<div class="right">
+			<a href="" >
+				购物车
+			</a>
+			<a href="">
+				登录
+			</a>
+			<a href="">
+				注册
+			</a>
+				
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="bodyer">
+		<div class="bodyCenter">
+			<div class="module-box">
+				<div>
+					<input type="text" id="title" class="input" placeholder="问题标题，一句话说明遇到的问题" style="width: 600px;" />
+					<button class="btn" onclick="publishProblem()">发布问题</button>
+				</div>
+				<div class="types">
+					<select name="" class="select" id="select">
+						<option value="">选择模块</option>
+						<option value="c++">c++</option>
+						<option value="mysql">mysql</option>
+						<option value="java">java</option>
+					</select>
+					
+				</div>
+				<div>
+					<div class="in" contenteditable='true' id="content"></div>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+</body>
+</html>
+<script src="../../static/js/base.js"></script>
+<script type="text/javascript" src="../../static/js/jquery/jquery-3.3.1.min.js" ></script>
+<script src="../../static/js/font.js"></script>
+<script>
+	function publishProblem(){
+		var title = $("#title").val();
+		if(title==""||title==null){
+			$("#title").focus();
+			return;
+		}
+		var content= $("#content").html();
+		if(content==""){
+			$("#content").focus();
+			return ;
+		}
+		
+		$.ajax({
+			type:"get",
+			url:controllerUrl+"question_area/publish_problem",
+			async:true,
+			dataType:"json",
+			data:{
+				token:localStorage["token"],
+				title:title,
+				desc:content,
+				tag:select.value
+			},success:function(data){
+				if(data.info=="success"){
+					
+					alert("发送成功");
+				}else{
+					console.log(data);
+				}
+				
+			}
+		});
+		
+		
+		
+		
+	}
+	
+</script>
+

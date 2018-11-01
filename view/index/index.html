@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../static/css/header/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/css/public/index.css"/>
+		
+		<title></title>
+		<style>
+			.show{
+				
+				position: absolute;   
+		        top: 20%;    
+		        left: 36%;   
+			}
+			
+		</style>
+		
+	</head>
+	<body background="../../static/img/Amazing_Landscape_133.jpg">
+		<div class="header" id="header">
+			<div class="icon">
+				<img src="../../static/img/icon.png" class="img" />
+			</div>
+			
+			<ul>
+				<li>
+					<a href="index2login.html" style="color: white;">学生课堂</a>
+					
+					
+				</li>
+				<li>
+					<a href="../questionArea/index.html">问答专区</a>
+				</li>
+				<li>
+					<a href="../questionArea/questionBrushing.html">题库</a>
+				</li>
+				
+				
+			</ul>
+			<div class="right">
+				<!--<a href="" >
+					购物车
+				</a>
+				<a href="">
+					登录
+				</a>
+				<a href="">
+					注册
+				</a>-->
+					
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="bodyer">
+			
+		
+			<div class="background">
+				
+				<div class="fitstLine"><i>求知若渴 虚心若愚</i></div>	
+				
+				<div class="secondLine">study for future</div>	
+			
+			</div>
+		
+			<input type='button' class="studyButton" value="开始进入学习之旅">
+			
+			
+		</div>
+		
+		
+		<div class="footer">
+			
+		</div>
+		
+		
+	</body>
+	<div class="show" style="display: none;">
+		<iframe src="login.html" style="width: 400px;height: 400px;background: #bedef3;;border: none;"></iframe>
+	
+	</div>
+</html>
+<script>
+
+	/**
+	 * 弹出登录事件
+	 */
+	$(".studyButton").click(function(){
+		$(".show").fadeIn("slow");
+		$(".bodyer").fadeOut("slow");
+	});
+	function login(){
+		$.ajax({
+			url:controllerUrl+"user_info/login",
+			dataType:"json",
+			method:"get",
+			data:{
+				account:acc,
+				password:pwd,
+			},success:function(data){
+				alert(data);
+				
+			},error:function(data){
+				console.log(data);
+				
+			}
+			
+		})
+		
+	}
+	
+</script>
+
+
+<script src="../../static/js/font.js"></script>
+
+<script type="text/javascript" src="../../static/js/jquery/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="../../static/js/vue.js" ></script>
+<script>
+	
+	
+	
+	
+</script>
